@@ -1,0 +1,34 @@
+html, body{
+    height: 100%;
+}
+#container{
+    height: 100%;
+    border: 2px;
+    padding: 50px;
+}
+legend{
+    font-size: 25px;
+    padding-left: 50px;
+}
+.question-text{
+    font-size: 35px;
+
+}
+.question-answer{
+    color: red;
+    text-align: right;
+    font-size: 45px;
+}
+.row{
+    font-size: 50px;
+    color: #5771FF;
+}
+.col-md-6{
+    margin-bottom:30px;
+}
+.fa-check{
+    color: greenyellow;
+}
+.fa-times{
+    color: red;
+}

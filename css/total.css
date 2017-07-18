@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+}
+
+.container-fill {
+    display: block;
+    overflow: auto;
+    min-height: 100%;
+    height: 100%;
+}
+
+.total {
+    position: relative;
+    top: 20%;
+}
+
+.chart div {
+    font: 20px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+}
+.team{
+    font: 20px sans-serif;
+    text-align: left;
+}
