@@ -1,0 +1,24 @@
+.round-logo {
+    font-family: 'Varela Round', serif;
+    padding: 20px 0 70px 10px;
+    font-size: 50px;
+    color: #aaaaaa;
+    font-weight: bold;
+}
+
+.btn-round-panel {
+    width: 100%;
+    margin: 3px 0 3px;
+}
+
+.round-start-button {
+    padding-top: 70px;
+}
+
+.start-ico {
+    padding-right: 10px;
+}
+
+.round-panel {
+    padding: 0 20px 0 20px;
+}
