@@ -21,6 +21,9 @@ h1{
     margin-right: 40px;
     margin-left: 40px;
 }
+.round-selector .btn-info{
+    background-color: lightgrey;
+}
 button{
     size: 30px;
 }
