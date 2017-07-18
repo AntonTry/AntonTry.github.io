@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team %team_name% Stats</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/TeamStats.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="team-stats-logo text-center">TEAM STATS</div>
+    <div class="team-stats-description text-center">SHOW STATS FOR TEAM:</div>
+    <div class="col-md-3 col-md-offset-5">
+        <select name="teams" id="teams" title="teams">
+            <option value='no-value' disabled selected>Please select team</option>
+            <option value="1">Team 1 - %team_name%</option>
+            <option value="2">Team 2 - %team_name%</option>
+            <option value="3">Team 3 - %team_name%</option>
+            <option value="4">Team 4 - %team_name%</option>
+            <option value="5">Team 5 - %team_name%</option>
+        </select>
+    </div>
+    <div class="round-score-stats">
+        <table class="table table-bordered">
+            <thead>
+            <tr class="info-table-header">
+                <th class="text-center">Round #</th>
+                <th class="text-center">Answer correct</th>
+                <th class="text-center">Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="round-info text-center">
+                <td>1</td>
+                <td>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                </td>
+                <td>
+                    5000
+                </td>
+            </tr>
+            <tr class="round-info text-center">
+                <td>2</td>
+                <td>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                </td>
+                <td>15000</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

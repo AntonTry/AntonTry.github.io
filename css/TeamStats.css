@@ -1,0 +1,22 @@
+.team-stats-logo {
+    padding: 20px 0 70px 10px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.team-stats-description {
+    font-size: 20px;
+}
+
+.round-score-stats {
+    padding-top: 75px;
+}
+
+.round-info {
+    font-size: 19px;
+    color: black;
+}
+
+.info-table-header {
+    font-size: 21px;
+}
