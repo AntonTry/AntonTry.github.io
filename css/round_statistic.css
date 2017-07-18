@@ -1,0 +1,77 @@
+h1 {
+    text-align: center;
+    margin: 40px;
+}
+
+span {
+  display: inline-block;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  color: black;
+  border-radius: 5px;
+}
+
+.team_name{
+    width:300px;
+}
+
+.team1 .question1{
+    width:200px;
+}
+
+.team1 .question2{
+    width:100px;
+}
+
+.team1 .question3{
+    width:350px;
+}
+
+.team2 .question1{
+    width:100px;
+}
+
+.team2 .question2{
+    width:150px;
+}
+
+.team2 .question3{
+    width:150px;
+}
+
+.team3 .question1{
+    width:50px;
+}
+
+.team3 .question2{
+    width:350px;
+}
+
+.team3 .question3{
+    width:100px;
+}
+
+.question1{
+    background-color: red;
+}
+
+.question2{
+    background-color: orange;
+}
+
+.question3{
+    background-color: yellow;
+}
+
+.team1{
+    margin: 30px;
+}
+
+.team2{
+    margin: 30px;
+}
+
+.team3{
+    margin:  30px;
+}
