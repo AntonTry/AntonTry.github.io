@@ -1,0 +1,32 @@
+h1{
+    margin-top: 10%;
+    text-align: center;
+    border-bottom: solid 1px lightgrey;
+    padding-bottom: 2%;
+}
+.answer{
+    text-align: center;
+    font-size: 24px;
+}
+.team-list{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 24px;
+    list-style: none;
+}
+.team-list li[type="checkbox"] {
+    float: right;
+}
+.team-list input[type=checkbox]{
+    transform: scale(1.5);
+    margin-left: 50px;
+}
+.round-selector{
+    width: 100px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+.control-panel{
+    float: right;
+}
+
