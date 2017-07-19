@@ -23,8 +23,7 @@ h1{
 }
 .round-selector{
     width: 100px;
-    margin-right: 40px;
-    margin-left: 40px;
+    margin: auto 40px;
 }
 .control-panel{
     float: right;
