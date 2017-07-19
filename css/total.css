@@ -5,6 +5,8 @@ html, body {
 h1 {
     text-align: center;
     border-bottom: 1px solid;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .container-fill {
