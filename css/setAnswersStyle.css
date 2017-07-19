@@ -19,7 +19,7 @@ h1{
 }
 .team-list input[type=checkbox]{
     transform: scale(1.5);
-    margin: 0 50px;
+    margin-left: 50px;
 }
 .round-selector{
     width: 100px;
