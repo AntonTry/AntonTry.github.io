@@ -2,6 +2,10 @@ html, body {
     height:100%;
 }
 
+h1,h3 {
+    text-align: center;
+}
+
 .container-fill {
     display: block;
     overflow: auto;

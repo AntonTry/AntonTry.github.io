@@ -2,6 +2,11 @@ html, body {
     height: 100%;
 }
 
+h1 {
+    text-align: center;
+    border-bottom: 1px solid;
+}
+
 .container-fill {
     display: block;
     overflow: auto;
@@ -19,7 +24,8 @@ html, body {
     background-color: steelblue;
     text-align: right;
     padding: 3px;
-    margin: 1px;
+    padding-right: 10px;
+    margin: 2px;
     color: white;
 }
 .team{
