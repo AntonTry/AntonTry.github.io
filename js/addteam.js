@@ -1,19 +1,5 @@
-// include('../js/GameBuilder.js');
-var config = {
-    apiKey: "AIzaSyBj9d2KAMg7QmWfLCK1VwZ-jNH2LzZf65M",
-    authDomain: "madheadshow-e3ad4.firebaseapp.com",
-    databaseURL: "https://madheadshow-e3ad4.firebaseio.com",
-    projectId: "madheadshow-e3ad4",
-    storageBucket: "madheadshow-e3ad4.appspot.com",
-    messagingSenderId: "564839865401"
-};
-firebase.initializeApp(config);
-
-
 var numberOfTeams = 0;
 var limit = 10;
-
-
 
 class NewTeamInput{
     constructor(teamNumber){
@@ -113,24 +99,10 @@ function addInput() {
     }
 }
 
-function write() {
-    var game= new GameBuilder()
-        .setTeam({id:'qweqw', name:'ASdas'})
-        .setTeam({id:'hfgh', name:'fds f'})
-        .setRound(1, 5)
-        .setRound(2, 6)
-        .buildGame();
-    var newPostKey = firebase.database().ref().child('games').push();
-    newPostKey.set(game);
-
-}
-
 function createTeams() {
     addInput();
     addInput();
-    write();
 }
-
 
 
 
