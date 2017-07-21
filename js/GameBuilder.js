@@ -3,11 +3,11 @@ class GameBuilder {
         this.game = new Game();
     }
 
-    addGame(game){
+    addGame(game) {
         this.game = game;
     }
 
-    addId(id){
+    addId(id) {
         this.game.id = id;
     }
 
@@ -17,8 +17,8 @@ class GameBuilder {
     }
 
     addRoundsArray(rounds) {
-        for (i = 0; i < rounds.length; i++) {
-            var newRound = new GameRound(i, rounds[i]);
+        for (let i = 0; i < rounds.length; i++) {
+            let newRound = new GameRound(i, rounds[i]);
             this.game.rounds.push(newRound);
         }
         return this;
@@ -30,20 +30,20 @@ class GameBuilder {
     }
 
     addTeamsArray(teams) {
-        for (i = 0; i < teams.length; i++) {
-            var gameTeam = new GameTeam(teams[i].id, teams[i].name);
+        for (let i = 0; i < teams.length; i++) {
+            let gameTeam = new GameTeam(teams[i].id, teams[i].name);
             this.game.teams.push(gameTeam);
         }
         return this;
     }
 
-    addResult(result){
+    addResult(result) {
         this.game.results.push(result);
         return this;
     }
 
-    addResultsArray(results){
-        for (i = 0; i < teams.length; i++) {
+    addResultsArray(results) {
+        for (let i = 0; i < teams.length; i++) {
             this.game.teams.push(results[i]);
         }
         return this;
