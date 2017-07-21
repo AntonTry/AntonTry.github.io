@@ -50,12 +50,6 @@ class NewTeamInput{
     }
 }
 
-var addButton = document.getElementById('addButton');
-addButton.addEventListener('click', addInput);
-
-var div = document.getElementById('team1');
-div.addEventListener('click', deleteRow);
-
 function deleteRow() {
 
     var target = event.target;
