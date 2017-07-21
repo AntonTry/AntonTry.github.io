@@ -9,7 +9,7 @@ function buildGameForFirebase() {
     for (let i = 0; i < numberOfRounds; i++) {
         let numberOfQuizzesElement = document.getElementById('number-questions-' + (i + 1));
 
-        gameBuilder.addRound(i + 1, numberOfQuizzesElement.value);
+        gameBuilder.addRound(i + 1, Number(numberOfQuizzesElement.value));
     }
 
     return gameBuilder.buildGame().convertForFirebase();
