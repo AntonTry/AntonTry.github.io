@@ -1,0 +1,47 @@
+class ResultService {
+    constructor(database) {
+        this.database = database;
+        this.ref = database.ref().child("games");
+    }
+
+    saveResult(result, gameId) {
+        let resultKey = result.round + "_" + result.quizz + "_" + result.teamId;
+        return resultRef.child(gameId)
+            .child("results")
+            .child(resultKey)
+            .set(result)
+            .then((res) => {
+                return resultKey;
+            }, (err) => {
+                console.log(err);
+                return err;
+            });
+    }
+
+    filter(filter,gameId){
+        return ref.child(gameId)
+            .child("results")
+            .orderByChild(filter.by).equalTo(filter.val)
+            .once('value')
+            .then((res) => {
+                    return res;
+                },
+                (err) => {
+                    console.log(err);
+                    return err;
+                });
+    }
+
+    getGameResults(gameId) {
+        return ref.child(gameId)
+            .child("results")
+            .once('value')
+            .then((res) => {
+                    return res;
+                },
+                (err) => {
+                    console.log(err);
+                    return err;
+                });
+    }
+}
