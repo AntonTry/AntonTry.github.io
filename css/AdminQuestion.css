@@ -1,0 +1,17 @@
+html, body{
+    height:100%;
+}
+fieldset legend{
+    font-size: 25px;
+    padding-left: 50px;
+}
+#container {
+    padding: 30px;
+}
+.question{
+    font-size: 35px;
+}
+button.btn-success{
+    float: right;
+}
+
