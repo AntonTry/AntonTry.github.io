@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+    margin: 40px;
+}
+
+span {
+  display: inline-block;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  color: black;
+  border-radius: 5px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.team_name{
+    width:300px;
+}
+
+
+.round1{
+    background-color: red;
+}
+
+.round2{
+    background-color: orange;
+}
+
+.round3{
+    background-color: yellow;
+}
+
+.team1{
+    margin: 30px;
+}
+
+.team2{
+    margin: 30px;
+}
+
+.team3{
+    margin:  30px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 20px;
+}

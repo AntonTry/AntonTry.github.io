@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team %team_name% Stats</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/TeamStats.css">
+    <link rel="stylesheet" href="../css/bootstrapSilverButton.css">
+</head>
+<body>
+<div class="container">
+    <div class="team-stats-logo text-center">TEAM STATS</div>
+    <div class="team-stats-description text-center">SHOW STATS FOR TEAM:</div>
+    <div class="col-md-3 col-md-offset-5">
+        <select name="teams" id="teams" title="teams">
+            <option value='no-value' disabled selected>Please select team</option>
+            <option value="1">Team 1 - %team_name%</option>
+            <option value="2">Team 2 - %team_name%</option>
+            <option value="3">Team 3 - %team_name%</option>
+            <option value="4">Team 4 - %team_name%</option>
+            <option value="5">Team 5 - %team_name%</option>
+        </select>
+    </div>
+    <div class="round-score-stats">
+        <table class="table table-bordered">
+            <thead>
+            <tr class="info-table-header">
+                <th class="text-center">Round #</th>
+                <th class="text-center">Answer correct</th>
+                <th class="text-center">Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="round-info text-center">
+                <td>1</td>
+                <td>
+                    <button class="btn btn-success">1</button>
+                    <button class="btn btn-success">2</button>
+                    <button class="btn btn-primary">3</button>
+                    <button class="btn btn-primary">4</button>
+                    <button class="btn btn-primary">5</button>
+                    <button class="btn btn-primary">6</button>
+                    <button class="btn btn-primary">7</button>
+                    <button class="btn btn-primary">8</button>
+                    <button class="btn btn-primary">9</button>
+                    <button class="btn btn-primary">10</button>
+                </td>
+                <td>
+                    5
+                </td>
+            </tr>
+            <tr class="round-info text-center">
+                <td>2</td>
+                <td>
+                    <button class="btn btn-success">1</button>
+                    <button class="btn btn-success">2</button>
+                    <button class="btn btn-primary">3</button>
+                    <button class="btn btn-primary">4</button>
+                    <button class="btn btn-primary">5</button>
+                    <button class="btn btn-primary">6</button>
+                    <button class="btn btn-primary">7</button>
+                    <button class="btn btn-primary">8</button>
+                    <button class="btn btn-silver">9</button>
+                    <button class="btn btn-silver">10</button>
+                </td>
+                <td>10</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

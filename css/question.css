@@ -1,5 +1,15 @@
 html, body {
-    height:100%;
+    height: 100%;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+h1 {
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .container-fill {
@@ -9,7 +19,7 @@ html, body {
     height: 100%;
 }
 
-.question{
+.question {
     position: relative;
     top: 20%;
 }
