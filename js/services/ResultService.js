@@ -44,4 +44,21 @@ class ResultService {
                     return err;
                 });
     }
+
+    getResultByRoundAndQuiz(round,quiz,gameId){
+        return this.ref.child(gameId)
+            .child("results")
+            .orderByChild("round")
+            .equalTo(round)
+            .orderByChild("quiz")
+            .equalTo(quiz)
+            .once('value')
+            .then((res) => {
+                    return res;
+                },
+                (err) => {
+                    console.log(err);
+                    return err;
+                });
+    }
 }
