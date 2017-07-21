@@ -99,6 +99,11 @@ function addInput() {
     }
 }
 
+function createTeams() {
+    addInput();
+    addInput();
+}
+
 
 
 
