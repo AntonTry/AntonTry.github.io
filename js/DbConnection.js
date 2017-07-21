@@ -1,13 +1,12 @@
 class DbConnection {
     static getConnection() {
-        const firebase = require('firebase');
         const config = {
-            apiKey: "",
-            authDomain: "",
-            databaseURL: "",
-            projectId: "",
-            storageBucket: "",
-            messagingSenderId: ""
+            apiKey: "AIzaSyBW1FbVas8nNwUp8jU8gqWjhpjqdFqIa3g",
+            authDomain: "fir-testproject-902dd.firebaseapp.com",
+            databaseURL: "https://fir-testproject-902dd.firebaseio.com",
+            projectId: "fir-testproject-902dd",
+            storageBucket: "fir-testproject-902dd.appspot.com",
+            messagingSenderId: "844314677599"
         };
         const app = firebase.initializeApp(config);
         return app.database();
