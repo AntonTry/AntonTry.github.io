@@ -1,8 +1,5 @@
-
 var numberOfTeams = 0;
 var limit = 10;
-
-
 
 class NewTeamInput{
     constructor(teamNumber){
@@ -106,7 +103,6 @@ function createTeams() {
     addInput();
     addInput();
 }
-
 
 
 
