@@ -10,57 +10,24 @@ span {
   padding: 0px;
   color: black;
   border-radius: 5px;
+  height: 20px;
+  vertical-align: middle;
 }
 
 .team_name{
     width:300px;
 }
 
-.team1 .question1{
-    width:200px;
-}
 
-.team1 .question2{
-    width:100px;
-}
-
-.team1 .question3{
-    width:350px;
-}
-
-.team2 .question1{
-    width:100px;
-}
-
-.team2 .question2{
-    width:150px;
-}
-
-.team2 .question3{
-    width:150px;
-}
-
-.team3 .question1{
-    width:50px;
-}
-
-.team3 .question2{
-    width:350px;
-}
-
-.team3 .question3{
-    width:100px;
-}
-
-.question1{
+.round1{
     background-color: red;
 }
 
-.question2{
+.round2{
     background-color: orange;
 }
 
-.question3{
+.round3{
     background-color: yellow;
 }
 
@@ -74,4 +41,12 @@ span {
 
 .team3{
     margin:  30px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 20px;
 }
