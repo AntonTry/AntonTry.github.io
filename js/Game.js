@@ -1,5 +1,7 @@
 class Game{
     constructor(){
+        this.currentRound = 1;
+        this.currentQuiz = 1;
         this.teams = [];
         this.rounds = [];
         this.results = [];
