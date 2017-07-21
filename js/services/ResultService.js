@@ -5,12 +5,12 @@ class ResultService {
     }
 
     saveResult(result, gameId) {
-        let resultKey = result.round + "_" + result.quizz + "_" + result.teamId;
-        return resultRef.child(gameId)
+        let resultKey = result.round + "_" + result.quiz + "_" + result.teamId;
+        return this.ref.child(gameId)
             .child("results")
             .child(resultKey)
             .set(result)
-            .then((res) => {
+            .then(() => {
                 return resultKey;
             }, (err) => {
                 console.log(err);
@@ -18,8 +18,8 @@ class ResultService {
             });
     }
 
-    filter(filter,gameId){
-        return ref.child(gameId)
+    filter(filter, gameId) {
+        return this.ref.child(gameId)
             .child("results")
             .orderByChild(filter.by).equalTo(filter.val)
             .once('value')
@@ -33,7 +33,7 @@ class ResultService {
     }
 
     getGameResults(gameId) {
-        return ref.child(gameId)
+        return this.ref.child(gameId)
             .child("results")
             .once('value')
             .then((res) => {
