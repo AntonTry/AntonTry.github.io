@@ -6,9 +6,7 @@ class Game{
             this.teams = [];
             this.rounds = [];
             this.results = [];
-            this.resultService = null;
-            this.teamService = null;
-            this.gameService = null;
+
         }
         else {
             this.currentRound = game.currentRound;
@@ -16,9 +14,7 @@ class Game{
             this.teams = game.teams;
             this.rounds = game.rounds;
             this.results = game.results;
-            this.resultService = null;
-            this.teamService = null;
-            this.gameService = null;
+
 
             this.convertFromFirebase();
         }
@@ -54,6 +50,8 @@ class Game{
             teamsTemp.push(new GameTeam(key, this.teams[key]));
         }
         this.teams = teamsTemp;
+
+        //ToDo convert from results
 
         return this;
     }
