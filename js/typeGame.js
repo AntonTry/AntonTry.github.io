@@ -17,5 +17,8 @@ function buildGameForFirebase() {
 function buildListener() {
     let game = buildGameForFirebase();
     let gameService = new GameService(DbConnection.getConnection());
-    gameService.save(game).then((gameId)=>{document.location.href = '../admin/addteam.html'});
+    gameService.save(game).then((gameId)=>{
+        localStorage.setItem("gameId", gameId);
+        document.location.href = '../admin/addteam.html'
+    });
 }
