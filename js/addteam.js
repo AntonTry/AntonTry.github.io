@@ -1,5 +1,13 @@
-//include("../js/App.js");
-
+// include('../js/GameBuilder.js');
+var config = {
+    apiKey: "AIzaSyBj9d2KAMg7QmWfLCK1VwZ-jNH2LzZf65M",
+    authDomain: "madheadshow-e3ad4.firebaseapp.com",
+    databaseURL: "https://madheadshow-e3ad4.firebaseio.com",
+    projectId: "madheadshow-e3ad4",
+    storageBucket: "madheadshow-e3ad4.appspot.com",
+    messagingSenderId: "564839865401"
+};
+firebase.initializeApp(config);
 
 
 var numberOfTeams = 0;
@@ -100,74 +108,28 @@ function addInput() {
         numberOfTeams--;
     }
     else {
-        var newdiv = document.createElement('div');
-
-
-        var newLabel = document.createElement('label');
-        newLabel.setAttribute('class', 'control-label teams');
-        newLabel.innerHTML = 'Team' + numberOfTeams;
-        newdiv.appendChild(newLabel);
-
-        var inputdiv = document.createElement('div');
-        inputdiv.setAttribute('class', 'input-group');
-
-        var newinput = document.createElement('input');
-        newinput.setAttribute('id', 'team' + numberOfTeams);
-        newinput.setAttribute('class', 'form-control');
-        newinput.setAttribute('type', 'text');
-        newinput.setAttribute('name', 'team[]');
-        newinput.setAttribute('placeholder', 'Team name');
-
-        inputdiv.appendChild(newinput);
-
-        var newspan = document.createElement('span');
-        newspan.setAttribute('class', 'input-group-btn');
-
-        var newbutton = document.createElement('button');
-        newbutton.setAttribute('class', 'btn btn-primary');
-        newbutton.setAttribute('type', 'button');
-
-        var newi = document.createElement('i');
-        newi.setAttribute('class', 'fa fa-trash-o');
-        newi.setAttribute('aria-hidden', 'true');
-
-        newbutton.appendChild(newi);
-        newspan.appendChild(newbutton);
-
-        inputdiv.appendChild(newspan);
-
-        newdiv.appendChild(inputdiv);
-        newdiv.addEventListener('click', deleteRow);
-
-        document.getElementById('teams').appendChild(newdiv);
-
-       /* var newInput = new NewTeamInput(numberOfTeams);
-        newInput.addTeam();*/
+        var newInput = new NewTeamInput(numberOfTeams);
+        newInput.addTeam();
     }
 }
 
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyBj9d2KAMg7QmWfLCK1VwZ-jNH2LzZf65M",
-    authDomain: "madheadshow-e3ad4.firebaseapp.com",
-    databaseURL: "https://madheadshow-e3ad4.firebaseio.com",
-    projectId: "madheadshow-e3ad4",
-    storageBucket: "madheadshow-e3ad4.appspot.com",
-    messagingSenderId: "564839865401"
-};
-firebase.initializeApp(config);
+function write() {
+    var game= new GameBuilder()
+        .setTeam({id:'qweqw', name:'ASdas'})
+        .setTeam({id:'hfgh', name:'fds f'})
+        .setRound(1, 5)
+        .setRound(2, 6)
+        .buildGame();
+    var newPostKey = firebase.database().ref().child('games').push();
+    newPostKey.set(game);
 
-var fDB = firebase.database();
-
-
-
-function writeUserData(userId, name) {
-    fDB.ref('/teams/' + userId).set({
-        name: name,
-    });
 }
 
-writeUserData('teamId3', 'MyTeam3');
+function createTeams() {
+    addInput();
+    addInput();
+    write();
+}
 
 
 
