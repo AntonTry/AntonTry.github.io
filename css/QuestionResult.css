@@ -1,14 +1,13 @@
 html, body{
     height: 100%;
 }
-#container{
-    height: 100%;
-    border: 2px;
-    padding: 50px;
-}
 legend{
     font-size: 25px;
     padding-left: 50px;
+}
+#container{
+    height: 100%;
+    padding: 30px;
 }
 .question-text{
     font-size: 35px;
@@ -19,12 +18,18 @@ legend{
     text-align: right;
     font-size: 45px;
 }
-.row{
-    font-size: 50px;
+.my-table{
+    width: 50%;
+}
+.my-row{
+    font-size: 60px;
+    margin: 25px;
+}
+.my-row li{
     color: #5771FF;
 }
-.col-md-6{
-    margin-bottom:30px;
+.my-row li i{
+    float: right;
 }
 .fa-check{
     color: greenyellow;
