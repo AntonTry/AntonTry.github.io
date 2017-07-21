@@ -1,6 +1,5 @@
 class DbConnection {
     static getConnection() {
-        const firebase = require('firebase');
         const config = {
             apiKey: "",
             authDomain: "",
