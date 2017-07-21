@@ -1,13 +1,28 @@
 class Game{
-    constructor(){
-        this.currentRound = 1;
-        this.currentQuiz = 1;
-        this.teams = [];
-        this.rounds = [];
-        this.results = [];
-        this.resultService = null;
-        this.teamService = null;
-        this.gameService = null;
+    constructor(game){
+        if(game === undefined){
+            this.currentRound = 1;
+            this.currentQuiz = 1;
+            this.teams = [];
+            this.rounds = [];
+            this.results = [];
+            this.resultService = null;
+            this.teamService = null;
+            this.gameService = null;
+        }
+        else {
+            this.currentRound = game.currentRound;
+            this.currentQuiz = game.currentQuiz;
+            this.teams = game.teams;
+            this.rounds = game.rounds;
+            this.results = game.results;
+            this.resultService = null;
+            this.teamService = null;
+            this.gameService = null;
+
+            this.convertFromFirebase();
+        }
+
     }
 
     convertForFirebase(){
@@ -36,7 +51,7 @@ class Game{
 
         let teamsTemp = []
         for(let key in this.teams){
-            teamsTemp.push({id:key, name:this.teams[key]});
+            teamsTemp.push(new GameTeam(key, this.teams[key]));
         }
         this.teams = teamsTemp;
 

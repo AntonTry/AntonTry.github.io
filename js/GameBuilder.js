@@ -1,11 +1,14 @@
 class GameBuilder {
-    constructor() {
-        this.game = new Game();
+    constructor(game) {
+        if(game === undefined){
+            this.game = new Game();
+        }
+        else{
+            this.game = new Game(game);
+        }
+
     }
 
-    addGame(game) {
-        this.game = game;
-    }
 
     addId(id) {
         this.game.id = id;
