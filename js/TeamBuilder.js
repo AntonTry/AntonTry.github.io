@@ -39,7 +39,9 @@ class TeamBuilder {
                 }
                 localStorage.setItem("teams", JSON.stringify(teams));
             }
-        );
+        ).then(function () {
+            document.location.href = '../admin/typeGame.html'
+        });
     }
 }
 
