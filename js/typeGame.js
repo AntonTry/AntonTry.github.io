@@ -12,13 +12,16 @@ function buildGameForFirebase() {
         gameBuilder.addRound(i + 1, Number(numberOfQuizzesElement.value));
     }
 
-    return gameBuilder.buildGame().convertForFirebase();
+    let teams = JSON.parse(localStorage.getItem("teams"));
+    gameBuilder.addTeams(teams);
+
+    return gameBuilder.buildGame();
 }
 function buildListener() {
     let game = buildGameForFirebase();
     let gameService = new GameService(DbConnection.getConnection());
     gameService.save(game).then((gameId)=>{
         localStorage.setItem("gameId", gameId);
-        document.location.href = '../admin/addteam.html'
+        document.location.href = '../admin/Question.html'
     });
 }

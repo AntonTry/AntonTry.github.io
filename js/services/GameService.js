@@ -11,7 +11,7 @@ class GameService {
             .once('value')
             .then(
                 (res) => {
-                    return res;
+                    return this.convertFromFirebase(res);
                 },
                 (err) => {
                     console.log(err);
@@ -20,6 +20,7 @@ class GameService {
     }
 
     save(game) {
+        game = this.convertForFirebase(game);
         return this.gameRef
             .push(game)
             .then(
@@ -62,5 +63,39 @@ class GameService {
                     return err;
                 }
             )
+    }
+
+    convertForFirebase(game){
+        let temp = {};
+        for(let i = 0; i < game.teams.length; i++){
+            temp[game.teams[i].id] = game.teams[i].name;
+        }
+        game.teams = temp;
+
+        let roundsTemp = {};
+        for(let i = 0; i < game.rounds.length; i++){
+            roundsTemp[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
+        }
+        game.rounds = roundsTemp;
+
+        return game;
+    }
+
+    convertFromFirebase(game){
+        let roundTemp = []
+        for(let key in game.rounds){
+            roundTemp.push(new GameRound(key, game.rounds[key]));
+        }
+        game.rounds = roundTemp;
+
+        let teamsTemp = []
+        for(let key in game.teams){
+            teamsTemp.push(new GameTeam(key, game.teams[key]));
+        }
+        game.teams = teamsTemp;
+
+        //ToDo convert from results
+
+        return game;
     }
 }

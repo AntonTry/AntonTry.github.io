@@ -32,7 +32,7 @@ class GameBuilder {
         return this;
     }
 
-    addTeamsArray(teams) {
+    addTeams(teams) {
         for (let i = 0; i < teams.length; i++) {
             let gameTeam = new GameTeam(teams[i].id, teams[i].name);
             this.game.teams.push(gameTeam);
@@ -45,7 +45,7 @@ class GameBuilder {
         return this;
     }
 
-    addResultsArray(results) {
+    addResults(results) {
         for (let i = 0; i < teams.length; i++) {
             this.game.teams.push(results[i]);
         }
