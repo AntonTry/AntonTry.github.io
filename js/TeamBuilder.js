@@ -34,9 +34,9 @@ class TeamBuilder {
     setTeams() {
         Promise.all(this.build()).then(values => {
                 let teams = [];
-                for (let i = 0; i < values.length; i++) {
-                    teams.push(new Team(this.teams[i].value, values[i].key))
-                }
+                values.forEach((teamId, index) => {
+                    teams.push(this.teams[index].value, teamId.key);
+                })
                 localStorage.setItem("teams", JSON.stringify(teams));
             }
         ).then(function () {
