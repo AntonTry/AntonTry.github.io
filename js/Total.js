@@ -13,18 +13,24 @@ resultService.getGameResults(gameId)
     .then(drawChart)
 
 
-
 function replaceTeamIds(score) {
-    gameService.getGameTeams(gameId)
-        .then((teams)=>{
-            console.log(score)
+    return gameService.getGameTeams(gameId)
+        .then((teams) => {
+            score.forEach(roundScore => {
+                roundScore.data.forEach(roundScoreData => {
+                    teams.forEach(team=>{
+                        if(roundScoreData.team===team.teamId){
+                            roundScoreData.team = team.name;
+                        }
+                    })
+                })
+            })
+            return score
         })
-    return score;
-   }
+}
 
 
 function drawChart(dataset) {
-    console.log(dataset)
     rounds = dataset.map(function (d) {
         return d.round;
     });
