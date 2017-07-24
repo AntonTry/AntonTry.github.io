@@ -65,15 +65,33 @@ class GameService {
             )
     }
 
-    convertForFirebase(game){
+    getGameTeams(gameId) {
+        return this.gameRef
+            .child(`/${gameId}/teams`)
+            .once('value')
+            .then((res) => {
+                    let teams = [];
+                    for (let key in res.val()) {
+                        teams.push({teamId: key, name: res.val()[key]})
+                    }
+                    return teams;
+                },
+                (err) => {
+                    console.log(err);
+                    return err;
+                });
+
+    }
+
+    convertForFirebase(game) {
         let temp = {};
-        for(let i = 0; i < game.teams.length; i++){
+        for (let i = 0; i < game.teams.length; i++) {
             temp[game.teams[i].id] = game.teams[i].name;
         }
         game.teams = temp;
 
         let roundsTemp = {};
-        for(let i = 0; i < game.rounds.length; i++){
+        for (let i = 0; i < game.rounds.length; i++) {
             roundsTemp[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
         }
         game.rounds = roundsTemp;
@@ -81,15 +99,15 @@ class GameService {
         return game;
     }
 
-    convertFromFirebase(game){
+    convertFromFirebase(game) {
         let roundTemp = []
-        for(let key in game.rounds){
+        for (let key in game.rounds) {
             roundTemp.push(new GameRound(key, game.rounds[key]));
         }
         game.rounds = roundTemp;
 
         let teamsTemp = []
-        for(let key in game.teams){
+        for (let key in game.teams) {
             teamsTemp.push(new GameTeam(key, game.teams[key]));
         }
         game.teams = teamsTemp;

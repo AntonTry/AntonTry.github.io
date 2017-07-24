@@ -1,20 +1,58 @@
-var resultService = new ResultService(DbConnection.getConnection());
+var database = DbConnection.getConnection()
+var gameId = "-KpfXdftfy4mRHJYp-i8";
+var resultService = new ResultService(database);
+var teamService = new TeamService(database);
+var gameService = new GameService(database);
 
-
-var resultGame = resultService.getGameResults("-KpfXdftfy4mRHJYp-i8")
+resultService.getGameResults(gameId)
     .then((res) => {
-        return res.val()
+        return res;
     })
+    .then(GameResultParser.getRoundsResult)
+    .then(replaceTeamIds)
     .then(drawChart)
 
-function drawChart(data) {
-    var result = [];
 
-    for (key in data) {
-        result.push(data[key])
+
+function replaceTeamIds(score) {
+    gameService.getGameTeams(gameId)
+        .then((teams)=>{
+            console.log(score)
+        })
+    return score;
+   }
+
+
+function drawChart(dataset) {
+    console.log(dataset)
+    rounds = dataset.map(function (d) {
+        return d.round;
+    });
+
+    dataset = dataset.map(function (d) {
+        return d.data.map(function (o) {
+            return {
+                x: o.score,
+                y: o.team
+            };
+        });
+    });
+
+    for (let i = 0; i < dataset.length; i++) {
+        for (let j = 0; j < dataset[i].length; j++) {
+            try {
+                dataset[i][j].x0 = dataset[i - 1][j].x + dataset[i - 1][j].x0;
+            } catch (e) {
+                dataset[i][j].x0 = 0;
+            }
+        }
     }
 
-    var margins = {
+    teamNames = dataset[0].map(d => {
+        return d.y;
+    })
+
+    let margins = {
         top: 12,
         left: 60,
         right: 24,
@@ -23,32 +61,9 @@ function drawChart(data) {
     legendPanel = {
         width: 200
     };
+
     width = 650 - margins.left - margins.right - legendPanel.width;
-    height = 150 - margins.top - margins.bottom;
-    dataset = GameResultParser.getRoundsResult(result);
-    console.log(dataset);
-    rounds = dataset.map(function (d) {
-        return d.round;
-    }),
-        dataset = dataset.map(function (d) {
-            return d.data.map(function (o, i) {
-                return {
-                    x: o.score,
-                    y: o.team
-                };
-            });
-        });
-
-    for (var i = 0; i < dataset.length; i++) {
-        for (let j = 0; j < dataset[i].length; j++) {
-            try {
-                dataset[i][j].x0 = dataset[i - 1][j].x + dataset[i - 1][j].x0;
-            } catch (e) {
-                dataset[i][j].x0 = 0;
-            }
-
-        }
-    }
+    height = dataset[0].length * 35 - margins.top - margins.bottom;
 
     svg = d3.select('.chart')
         .append('svg')
@@ -66,10 +81,6 @@ function drawChart(data) {
     xScale = d3.scaleLinear()
         .domain([0, xMax])
         .range([0, width]);
-
-    teamNames = dataset[0].map(d=>{
-        return d.y;
-    })
 
     yScale = d3.scaleBand()
         .domain(teamNames)
@@ -111,22 +122,22 @@ function drawChart(data) {
             return xScale(d.x);
         })
 
-
     texts = groups.selectAll('text')
-        .data((d)=>{
+        .data((d) => {
             return d
         })
         .enter()
         .append('text')
         .attr('x', function (d) {
-            return xScale(d.x0+d.x*0.5);
+            return xScale(d.x0 + d.x * 0.4);
         })
         .attr('y', function (d) {
-            return yScale(d.y)+yScale.bandwidth()*0.6;
+            return yScale(d.y) + yScale.bandwidth() * 0.6;
         })
         .style('fill', "black")
-        .text(function (d) { return d.x; });
-
+        .text(function (d) {
+            return d.x;
+        });
 
     svg.append('g')
         .attr('transform', 'translate(0,' + height + ')')
@@ -134,7 +145,6 @@ function drawChart(data) {
 
     svg.append('g')
         .call(yAxis);
-
 
     rounds.forEach(function (s, i) {
         svg.append('text')
