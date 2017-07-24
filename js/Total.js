@@ -33,34 +33,22 @@ function drawChart(data) {
         dataset = dataset.map(function (d) {
             return d.data.map(function (o, i) {
                 return {
-                    y: o.score,
-                    x: o.team
+                    x: o.score,
+                    y: o.team
                 };
             });
-        }),
-        stack = d3.stack();
-    stack(dataset);
+        });
 
     for (var i = 0; i < dataset.length; i++) {
         for (let j = 0; j < dataset[i].length; j++) {
             try {
-                dataset[i][j].y0 = dataset[i - 1][j].y + dataset[i - 1][j].y0;
+                dataset[i][j].x0 = dataset[i - 1][j].x + dataset[i - 1][j].x0;
             } catch (e) {
-                dataset[i][j].y0 = 0;
+                dataset[i][j].x0 = 0;
             }
 
         }
     }
-
-    var dataset = dataset.map(function (group) {
-        return group.map(function (d) {
-            return {
-                x: d.y,
-                y: d.x,
-                x0: d.y0
-            };
-        });
-    });
 
     svg = d3.select('.chart')
         .append('svg')
