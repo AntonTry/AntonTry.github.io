@@ -1,33 +1,52 @@
-class TeamBuilder{
-
-    constructor(teamService){
-        this.teamService = teamService;
-    }
-
-
-    getTeamsInputs(){
-        var teamInputs = document.querySelectorAll('input[type="text"]');
-        return teamInputs;
-    }
-
-    build(){
-        var teams = [];
-        var teamsInputs = this.getTeamsInputs();
-        for (let i = 0; i < teamsInputs.length; i++){
-            teams[i] = new Team(teamsInputs[i].value);
-            this.teamService.save(teams[i])
-                .then((res)=>{
-                    teams[i].id = res.key;
-                })
-        }
-        return teams;
-    }
-
-}
-
-class Team{
-    constructor(name){
-        this.id;
+class Team {
+    constructor(name, id) {
+        this.id = id;
         this.name = name;
     }
 }
+
+class TeamBuilder {
+
+    constructor(teamService) {
+        this.teamService = teamService;
+        this.teams = this.getTeamsInputs();
+    }
+
+    getTeamsNames() {
+        return this.teams;
+    }
+
+
+    getTeamsInputs() {
+        let teamInputs = document.querySelectorAll('input[type="text"]');
+        return teamInputs;
+    }
+
+    build() {
+        let promises = [];
+        let teamService = this.teamService;
+        this.getTeamsInputs().forEach(function (input) {
+            promises.push(teamService.save({name: input.value}))
+        })
+        return promises;
+    }
+
+    setTeams() {
+        Promise.all(this.build()).then(values => {
+                let teams = [];
+                for (let i = 0; i < values.length; i++) {
+                    teams.push(new Team(this.teams[i].value, values[i].key))
+                }
+                localStorage.setItem("teams", JSON.stringify(teams));
+            }
+        ).then(function () {
+            document.location.href = '../admin/typeGame.html'
+        });
+    }
+}
+
+function createTeamListener() {
+    let teamBuilder = new TeamBuilder(new TeamService(DbConnection.getConnection()));
+    teamBuilder.setTeams();
+}
+
