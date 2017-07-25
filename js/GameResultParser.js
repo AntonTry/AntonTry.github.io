@@ -1,17 +1,21 @@
 class GameResultParser {
     static getRoundsResult(result) {
+        let res = [];
+        for ( let key in result) {
+            res.push(result[key])
+        }
         var rounds = {}
-        result.forEach((elem) => {
+        res.forEach((elem) => {
             rounds[elem.round] = {};
         });
-        for(key in rounds){
+        for(let key in rounds){
             let teams = {}
-            result.forEach((elem) => {
+            res.forEach((elem) => {
                 teams[elem.teamId] = {score:0};
             })
             rounds[key] = teams;
         }
-        result.forEach((elem)=>{
+        res.forEach((elem)=>{
             rounds[elem.round][elem.teamId].score+=elem.score;
         });
         var results = [];

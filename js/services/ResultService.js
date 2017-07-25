@@ -21,7 +21,7 @@ class ResultService {
             .orderByChild(filter.by).equalTo(filter.val)
             .once('value')
             .then((res) => {
-                    return res;
+                    return res.val();
                 },
                 (err) => {
                     console.log(err);
@@ -33,7 +33,7 @@ class ResultService {
         return this.ref.child(`/${gameId}/results`)
             .once('value')
             .then((res) => {
-                    return res;
+                    return res.val();
                 },
                 (err) => {
                     console.log(err);
@@ -46,7 +46,7 @@ class ResultService {
             .orderByKey().startAt(`${roundId}_${quizId}_`).endAt(`${roundId}_${quizId}_~`)
             .once('value')
             .then((res) => {
-                    return res;
+                    return res.val();
                 },
                 (err) => {
                     console.log(err);

@@ -9,7 +9,7 @@ class TeamService {
             .push(team)
             .then(
                 (res) => {
-                    return res;
+                    return res.val();
                 },
                 (err) => {
                     console.log(err);
@@ -23,7 +23,7 @@ class TeamService {
             .once('value')
             .then(
                 (res) => {
-                    return res;
+                    return res.val();
                 },
                 (err) => {
                     console.log(err);
@@ -40,7 +40,7 @@ class TeamService {
             .once('value')
             .then(
                 (res) => {
-                    return res;
+                    return res.val();
                 },
                 (err) => {
                     console.log(err);
