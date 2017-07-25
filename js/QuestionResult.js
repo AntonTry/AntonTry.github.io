@@ -15,9 +15,11 @@ let scoreResultName;
 let teams = {};
 
 Promise.all([currRound,currQuiz]).then(value =>{
-    round.innerText += value[0].val();
-    quiz.innerText += value[1].val();
-    resService.getByRoundAndQuiz(value[0].val(),value[1].val(),'-Kp_0ALYMVWz1hw8meC9').then(
+    let currRoundNum = value[0].val();
+    let currQuizNum = value[1].val();
+    round.innerText += currRoundNum;
+    quiz.innerText += currQuizNum;
+    resService.getByRoundAndQuiz(currRoundNum,currQuizNum,'-Kp_0ALYMVWz1hw8meC9').then(
         result => {
             Object.values(result).forEach(res=>{
                 teams[res.TeamID] = res.score;
