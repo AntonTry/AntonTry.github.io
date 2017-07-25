@@ -87,6 +87,5 @@ function generatePage() {
 }
 
 function onClickedNext(){
-    let next = new NextQuizz(setAnswer.gameService, setAnswer.currentRound, setAnswer.currentQuiz);
-    next.nextPage();
+    document.location.href = '../player/QuestionResult.html';
 }

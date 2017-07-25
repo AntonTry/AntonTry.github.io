@@ -8,18 +8,22 @@ let gameService = new GameService(con);
 let resService = new ResultService(con);
 let teamService = new TeamService(con);
 
-let currQuiz = gameService.getCurrentQuiz('-Kp_0ALYMVWz1hw8meC9');
-let currRound = gameService.getCurrentRound('-Kp_0ALYMVWz1hw8meC9');
+let gameId = localStorage.getItem('gameId');
+
+let currQuiz = gameService.getCurrentQuiz(gameId);
+let currRound = gameService.getCurrentRound(gameId);
 
 let scoreResultName;
 let teams = {};
+var currRoundNum;
+var currQuizNum;
 
 Promise.all([currRound,currQuiz]).then(value =>{
-    let currRoundNum = value[0].val();
-    let currQuizNum = value[1].val();
+    currRoundNum = value[0].val();
+    currQuizNum = value[1].val();
     round.innerText += currRoundNum;
     quiz.innerText += currQuizNum;
-    resService.getByRoundAndQuiz(currRoundNum,currQuizNum,'-Kp_0ALYMVWz1hw8meC9').then(
+    resService.getByRoundAndQuiz(currRoundNum,currQuizNum,gameId).then(
         result => {
             Object.values(result).forEach(res=>{
                 teams[res.TeamID] = res.score;
@@ -39,5 +43,8 @@ Promise.all([currRound,currQuiz]).then(value =>{
 
 });
 
-
+function onClickedNext() {
+    let next = new NextQuizz(gameService, currRoundNum, currQuizNum);
+    next.nextPage();
+}
 
