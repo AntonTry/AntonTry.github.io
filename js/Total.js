@@ -60,12 +60,12 @@ function drawChart(dataset) {
 
     let margins = {
         top: 12,
-        left: 150,
+        left: 130,
         right: 24,
         bottom: 24
     };
     legendPanel = {
-        width: 200
+        width: 210
     };
 
     width = 700 - margins.left - margins.right - legendPanel.width;
