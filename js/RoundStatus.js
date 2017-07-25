@@ -4,20 +4,19 @@ class RoundStatus extends HTMLElement{
         this._updateRendering();
     }
 
+     setCurrentRound(results){
+        let game = results[0].val()
+        let numberOfRounds = game.rounds.length-1;
+        let currentRound = results[1].val();
+         // let currentRound = 2;
 
-    _updateRendering() {
-        if ('content' in document.createElement('template')) {
+         if ('content' in document.createElement('template')) {
 
             // Instantiate the table with the existing HTML tbody
             // and the row with the template
             var t = document.querySelector('#temp');
 
-            let gs = new GameService(DbConnection.getConnection());
-            let gameId = localStorage.getItem("gameId");
-            let numberOfRounds = 5;
 
-            let currentRound = 4;
-            //ToDo
 
             var t2 = document.querySelector('#aTemp');
             let a = t2.content.querySelector('a');
@@ -35,10 +34,10 @@ class RoundStatus extends HTMLElement{
                 past.appendChild(newA);
             }
 
-                a.setAttribute('class', classA+" btn-danger");
-                a.innerHTML = roundString+currentRound;
-                let currentA = document.importNode(t2.content, true);
-                current.appendChild(currentA);
+            a.setAttribute('class', classA+" btn-danger");
+            a.innerHTML = roundString+currentRound;
+            let currentA = document.importNode(t2.content, true);
+            current.appendChild(currentA);
 
             for(let i = currentRound+1; i <= numberOfRounds; i++){
                 a.setAttribute('class', classA+" btn-silver");
@@ -64,6 +63,27 @@ class RoundStatus extends HTMLElement{
             // the HTML template element is not supported.
         }
     }
+
+
+    _updateRendering() {
+
+        let gs = new GameService(DbConnection.getConnection());
+        let gameId = localStorage.getItem("gameId");
+            let numberOfRounds = gs.getGameById(gameId);
+
+            let currentRound = gs.getCurrentRound(gameId);
+            Promise.all([numberOfRounds, currentRound])
+                .then(res => {this.setCurrentRound(res);
+                console.log(res);
+                });
+
+            //ToDo
+
+    }
+}
+
+function onClicked() {
+    document.location.href = '../admin/Question.html';
 }
 
 window.customElements.define('round-status', RoundStatus);

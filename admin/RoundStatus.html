@@ -34,6 +34,11 @@
         </template>
 
         <template id="temp">
+            <style>
+                @import url( '../css/bootstrap.css' );
+                @import url('../css/RoundStatusStyle.css');
+                @import url('../css/bootstrapSilverButton.css');
+            </style>
             <div class="col-md-3 round-panel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -64,7 +69,7 @@
         </template>
         <round-status></round-status>
 
-        <div class="col-md-5 col-md-offset-2 round-button-panel">
+        <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="onClicked()">
             <a href="#" class="btn btn-success btn-lg btn-block">
                 <span class="start-ico">START</span><i class="fa fa-flag-o"></i>
             </a>
