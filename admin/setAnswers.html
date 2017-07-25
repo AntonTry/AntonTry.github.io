@@ -5,65 +5,40 @@
     <title>Set Answer</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/setAnswersStyle.css">
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="../js/DbConnection.js"></script>
+    <script src="../js/services/ResultService.js"></script>
+    <script src="../js/services/GameService.js"></script>
+    <script src="../js/Game.js"></script>
 </head>
-<body>
+<body onload="generatePage()">
 <div class="container">
-    <h1>Question #3</h1>
-    <p class="answer">Answer: some answer...</p>
+    <div id="resultHeader">
+        <h1>Question #3</h1>
+        <p class="answer">Answer: some answer...</p>
+    </div>
     <div>
-        <ul class="team-list">
-            <li>
-                <label>
-                    Team #1<input type="checkbox">
-                </label>
-            </li>
-            <li>
-                <label>
-                    Team #2<input type="checkbox">
-                </label>
-            </li>
-            <li>
-                <label>
-                    Team #3<input type="checkbox">
-                </label>
-            </li>
-            <li>
-                <label>
-                    Team #4<input type="checkbox">
-                </label>
-            </li>
-            <li>
-                <label>
-                    Team #5<input type="checkbox">
-                </label>
-            </li>
-        </ul>
+        <ul class="team-list"></ul>
     </div>
 
     <div class="form-inline">
         <select class="form-control round-selector">
-            <option>Round #1</option>
-            <option>Round #2</option>
-            <option>Round #3</option>
-            <option>Round #4</option>
-            <option>Round #5</option>
+            <template id="roundOption">
+                <option>Round #</option>
+            </template>
         </select>
-        <button class="btn-success btn">1</button>
-        <button class="btn-success btn">2</button>
-        <button class="btn-danger btn">3</button>
-        <button class="btn">4</button>
-        <button class="btn">5</button>
-        <button class="btn">6</button>
-        <button class="btn">7</button>
-        <button class="btn">8</button>
-        <button class="btn">9</button>
-        <button class="btn">10</button>
+        <div class="quizzes-panel">
+            <template id="quizButton">
+                <button class="btn"></button>
+            </template>
+        </div>
         <div class="control-panel">
             <button class="btn-info btn">Show</button>
             <button class="btn btn-success">Next</button>
         </div>
-    </div>
 
+    </div>
+    <script src="../js/ResultBuilder.js"></script>
 </div>
 </body>
 </html>
