@@ -81,7 +81,7 @@ class RoundStatus extends HTMLElement{
 }
 
 function onClicked() {
-    document.location.href = '../admin/Question.html';
+    document.location.href = '../admin/setAnswers.html';
 }
 
 window.customElements.define('round-status', RoundStatus);
