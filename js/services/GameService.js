@@ -83,7 +83,7 @@ class GameService {
     }
 
     setCurrentRound(currentRound,gameId){
-        return this.ref.child(`${gameId}/currentRound`)
+        return this.gameRef.child(`${gameId}/currentRound`)
             .set(currentRound)
             .then(() => {
                 return currentRound;
@@ -94,7 +94,7 @@ class GameService {
     }
 
     setCurrentQuiz(currentQuiz,gameId){
-        return this.ref.child(`${gameId}/currentQuiz`)
+        return this.gameRef.child(`${gameId}/currentQuiz`)
             .set(currentQuiz)
             .then(() => {
                 return currentQuiz;
