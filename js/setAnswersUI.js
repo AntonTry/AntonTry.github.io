@@ -12,8 +12,8 @@ class SetAnswers{
         let resultHeader = document.querySelector('#resultHeader');
         let questionField = resultHeader.querySelector('h1');
         let answerField = resultHeader.querySelector('p');
-        questionField.innerHTML = 'Question #' + this.currentQuiz;
-        answerField.innerHTML = 'Answer: some answer ' + this.currentRound;
+        questionField.innerHTML = 'Question #' + quizNumber;
+        answerField.innerHTML = 'Answer: some answer ' + quizNumber;
     }
 
     createTeamInput(){
@@ -39,14 +39,24 @@ class SetAnswers{
             this.game = game.val();
             this.currentRound = this.game.currentRound;
             this.currentQuiz = this.game.currentQuiz;
-            this.setResultHeader();
+            this.fillRoundSelector();
             this.createQuizButtons(this.game.rounds[this.currentRound]);
-            this.setButtonsColor();
+        });
+    }
+
+    fillRoundSelector(){
+        let roundSelector = document.querySelector('.round-selector');
+        let selectorOption = roundSelector.querySelector('#roundOption');
+        this.game.rounds.forEach(() => {
+            roundSelector.appendChild(document.importNode(selectorOption.content, true));
+        })
+        roundSelector.querySelectorAll('option').forEach((option,index) => {
+            option.innerHTML += index + 1;
         });
     }
 
     createQuizButtons(quizzesCount){
-        let quizzesPanel = document.querySelector('#quizPanel');
+        let quizzesPanel = document.querySelector('.navigation-panel');
         let button = quizzesPanel.querySelector('#quizButton');
         for (let i = 1; i <= quizzesCount; i++){
             quizzesPanel.appendChild(document.importNode(button.content,true));
@@ -55,29 +65,24 @@ class SetAnswers{
     }
 
     setButtonsColor(){
-        let quizzesPanel = document.querySelector('#quizPanel');
+        let quizzesPanel = document.querySelector('.navigation-panel');
         let buttons = quizzesPanel.querySelectorAll('button');
         buttons.forEach((button,index) =>{
-            if(index < this.currentQuiz - 1){
-                button.className = 'btn btn-success';
-            }
-            else if(index == this.currentQuiz - 1){
-                button.className = 'btn btn-info';
-            }
-            else if(index > this.currentQuiz -1){
-                button.className = 'btn';
-            }
-            button.innerHTML = index + 1;
-            console.log(this.currentQuiz);
+
         })
+
+
+
+
     }
 }
 function generatePage() {
     let databese = DbConnection.getConnection();
-    let setAnswers = new SetAnswers(new ResultService(databese), new GameService(databese));
+    let resultBuilder = new SetAnswers(new ResultService(databese), new GameService(databese));
+    resultBuilder.setResultHeader(1);
     JSON.parse(localStorage.getItem('teams')).forEach((teamName) => {
-        setAnswers.createTeamInput();
+        resultBuilder.createTeamInput();
     })
-    setAnswers.setTeamsNames();
-    setAnswers.setGame();
+    resultBuilder.setTeamsNames();
+    resultBuilder.setGame();
 }

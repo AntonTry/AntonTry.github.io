@@ -1,14 +1,14 @@
 class NextQuizz{
-    constructor(currentRound, currentQuizz){
+    constructor(gameService, currentRound, currentQuizz){
+        this.gs = gameService;
         this.currentRound = currentRound;
         this.currentQuizz = currentQuizz;
     }
     
     nextPage() {
-        this.gs = new GameService(DbConnection.getConnection());
-        let gameId = localStorage.getItem("gameId");
+        this.gameId = localStorage.getItem("gameId");
 
-        this.gs.getGameById(gameId)
+        this.gs.getGameById(this.gameId)
             .then(res =>
             {
                 this.updateCurrent(res.val())
@@ -18,8 +18,8 @@ class NextQuizz{
 
     updateCurrent(game){
         if((game.rounds[this.currentRound-1] == this.currentQuizz)&&(game.rounds.length-1 != currentRound)){
-            let changeRound = this.gs.setCurrentRound(++this.currentRound);
-            let changeQuizz = this.gs.setCurrentQuiz(1);
+            let changeRound = this.gs.setCurrentRound(++this.currentRound, game);
+            let changeQuizz = this.gs.setCurrentQuiz(1, this.gameId);
             Promise.all([changeRound, changeQuizz])
                 .then(res => {
                     document.location.href = '../player/RoundStatistic.html'
@@ -29,7 +29,8 @@ class NextQuizz{
             document.location.href = '../player/Total.html';
         }
         else {
-            this.gs.setCurrentQuiz(++this.currentQuizz)
+            let n = this.currentQuizz+1;
+            this.gs.setCurrentQuiz(n, this.gameId)
                 .then(res => {
                     document.location.href = '../admin/setAnswers.html'
                 });
