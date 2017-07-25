@@ -21,8 +21,8 @@ function buildListener() {
     let game = buildGameForFirebase();
     let gameService = new GameService(DbConnection.getConnection());
     gameService.save(game).then((gameId)=>{
-        localStorage.setItem("gameId", gameId);
-        document.location.href = '../admin/Question.html'
+        localStorage.setItem("gameId", gameId.key);
+        document.location.href = '../admin/RoundStatus.html'
     });
 }
 
