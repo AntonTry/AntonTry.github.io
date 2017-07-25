@@ -26,7 +26,7 @@ class NextQuizz{
                     document.location.href = '../player/RoundStatistic.html'
                 });
         }
-        else if(game.rounds.length == this.currentRound-1){
+        else if((game.rounds.length-1 == this.currentRound)&&(QuizzesInRound == this.currentQuizz)){
             document.location.href = '../player/Total.html';
         }
         else {

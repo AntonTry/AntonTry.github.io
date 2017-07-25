@@ -75,12 +75,18 @@ class SetAnswers{
 
     }
 }
+var databese = DbConnection.getConnection();
+var setAnswer = new SetAnswers(new ResultService(databese), new GameService(databese));
+
 function generatePage() {
-    let databese = DbConnection.getConnection();
-    let setAnswer = new SetAnswers(new ResultService(databese), new GameService(databese));
     JSON.parse(localStorage.getItem('teams')).forEach((teamName) => {
         setAnswer.createTeamInput();
     })
     setAnswer.setTeamsNames();
     setAnswer.setGame();
+}
+
+function onClickedNext(){
+    let next = new NextQuizz(setAnswer.gameService, setAnswer.currentRound, setAnswer.currentQuiz);
+    next.nextPage();
 }
