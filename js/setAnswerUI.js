@@ -37,8 +37,10 @@ class SetAnswers{
         this.gameService.getGameById(localStorage.getItem('gameId')).
         then((game) => {
             this.game = game.val();
+            this.currentRound = this.game.currentRound;
+            this.currentQuiz = this.game.currentQuiz;
             this.fillRoundSelector();
-            this.createQuizButtons(5);
+            this.createQuizButtons(this.game.rounds[this.currentRound]);
         });
     }
 
@@ -54,18 +56,26 @@ class SetAnswers{
     }
 
     createQuizButtons(quizzesCount){
-        let quizzesPanel = document.querySelector('#quizzesPanel');
+        let quizzesPanel = document.querySelector('.navigation-panel');
         let button = quizzesPanel.querySelector('#quizButton');
         for (let i = 1; i <= quizzesCount; i++){
             quizzesPanel.appendChild(document.importNode(button.content,true));
-            console.log('add');
         }
+
     }
 
+    setButtonsColor(){
+        let quizzesPanel = document.querySelector('.navigation-panel');
+        let buttons = quizzesPanel.querySelectorAll('button');
+        buttons.forEach((button,index) =>{
+
+        })
 
 
+
+
+    }
 }
-
 function generatePage() {
     let databese = DbConnection.getConnection();
     let resultBuilder = new SetAnswers(new ResultService(databese), new GameService(databese));
