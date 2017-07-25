@@ -60,7 +60,7 @@ function drawChart(dataset) {
 
     let margins = {
         top: 12,
-        left: 100,
+        left: 150,
         right: 24,
         bottom: 24
     };
@@ -94,8 +94,7 @@ function drawChart(dataset) {
         .padding(0.1);
 
     xAxis = d3.axisBottom()
-        .scale(xScale)
-        .tickFormat(d3.format("d"));
+        .scale(xScale);
 
     yAxis = d3.axisLeft()
         .scale(yScale);

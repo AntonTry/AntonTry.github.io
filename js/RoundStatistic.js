@@ -47,12 +47,12 @@ function drawChart(dataset) {
 
     let margins = {
         top: 12,
-        left: 100,
+        left: 150,
         right: 24,
         bottom: 24
     };
 
-    width = 650 - margins.left - margins.right;
+    width = 700 - margins.left - margins.right;
     height = dataset[0].length * 35 - margins.top - margins.bottom;
 
     svg = d3.select('.chart')
