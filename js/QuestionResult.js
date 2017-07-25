@@ -15,6 +15,7 @@ let currRound = gameService.getCurrentRound(gameId);
 
 let scoreResultName;
 let teams = {};
+let name;
 var currRoundNum;
 var currQuizNum;
 
@@ -26,18 +27,24 @@ Promise.all([currRound,currQuiz]).then(value =>{
     resService.getByRoundAndQuiz(currRoundNum,currQuizNum,gameId).then(
         result => {
             Object.values(result).forEach(res=>{
-                teams[res.TeamID] = res.score;
+                teams[res.teamId] = res.score;
             });
-            for(let [teamID,score] of Object.entries(teams)){
-                teamService.getById(teamID)
-                    .then(team=>{
-                        if (score>0) scoreResultName = 'check';
-                        else scoreResultName = 'times';
-                        myTable.innerHTML +=`<div class="my-row">
-                                      <li>${team.name}<i class="fa fa-${scoreResultName}"></i></li>
-                                 </div>` ;
+            console.log(teams);
+                gameService.getGameTeams(gameId)
+                    .then(gamesTeams=>{
+                        for(let [teamId,score] of Object.entries(teams)) {
+                            gamesTeams.forEach(team => {
+                                if (team.teamId === teamId) name = team.name;
+                            });
+                            if (score > 0) scoreResultName = 'check';
+                            else scoreResultName = 'times';
+                            myTable.innerHTML += `<div class="my-row">
+                                      <li>${name}<i class="fa fa-${scoreResultName}"></i></li>
+                                 </div>`;
+                        }
                     })
-            }
+
+
         }
     );
 
