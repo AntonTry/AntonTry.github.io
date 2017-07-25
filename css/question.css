@@ -6,11 +6,6 @@ h1, h3 {
     text-align: center;
 }
 
-h1 {
-    border-bottom: 1px solid;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
 
 .container-fill {
     display: block;
