@@ -2,27 +2,18 @@ html, body{
     height: 100%;
 }
 legend{
-    font-size: 25px;
+    font-size: 55px;
     padding-left: 50px;
 }
 #container{
     height: 100%;
     padding: 30px;
 }
-.question-text{
-    font-size: 35px;
-
-}
-.question-answer{
-    color: red;
-    text-align: right;
-    font-size: 45px;
-}
 .my-table{
-    width: 50%;
+    width: 60%;
+    font-size: 60px;
 }
 .my-row{
-    font-size: 60px;
     margin: 25px;
 }
 .my-row li{
@@ -35,5 +26,6 @@ legend{
     color: greenyellow;
 }
 .fa-times{
+    margin-right: 8px;
     color: red;
 }

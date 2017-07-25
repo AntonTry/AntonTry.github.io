@@ -17,8 +17,9 @@ class NextQuizz{
     }
 
     updateCurrent(game){
-        if((game.rounds[this.currentRound-1] == this.currentQuizz)&&(game.rounds.length-1 != currentRound)){
-            let changeRound = this.gs.setCurrentRound(++this.currentRound, game);
+        let QuizzesInRound = game.rounds[this.currentRound];
+        if((QuizzesInRound == this.currentQuizz)&&(game.rounds.length-1 != this.currentRound)){
+            let changeRound = this.gs.setCurrentRound(++this.currentRound, this.gameId);
             let changeQuizz = this.gs.setCurrentQuiz(1, this.gameId);
             Promise.all([changeRound, changeQuizz])
                 .then(res => {
