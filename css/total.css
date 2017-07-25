@@ -24,7 +24,7 @@ h1 {
 .chart div {
     font: 20px sans-serif;
     background-color: steelblue;
-    text-align: right;
+    text-align: center;
     padding: 3px;
     padding-right: 10px;
     margin: 2px;
@@ -33,4 +33,7 @@ h1 {
 .team{
     font: 20px sans-serif;
     text-align: left;
+}
+div .chart{
+    text-align: center  ;
 }
