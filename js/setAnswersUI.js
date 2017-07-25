@@ -6,6 +6,7 @@ class SetAnswers{
         this.game;
         this.currentRound;
         this.currentQuiz;
+        this.teams = [];
     }
 
     setResultHeader(){
@@ -39,6 +40,9 @@ class SetAnswers{
             this.game = game.val();
             this.currentRound = this.game.currentRound;
             this.currentQuiz = this.game.currentQuiz;
+            for(let key in this.game.teams){
+                this.teams.push(key);
+            }
             this.setResultHeader();
             this.createQuizButtons(this.game.rounds[this.currentRound]);
             this.setButtonsColor();
@@ -69,11 +73,19 @@ class SetAnswers{
             }
             button.innerHTML = index +1;
         })
-
-
-
-
     }
+
+    setQuizResult(){
+        let checkboxes = document.querySelectorAll('input[type="checkbox"');
+        let promises = [];
+        checkboxes.forEach((checkBox, index) => {
+            let result = new Result(this.currentRound,this.currentQuiz,this.teams[index]);
+           result.setScore(+checkBox.checked);
+           promises.push(this.resultService.saveResult(result,localStorage.getItem('gameId')));
+        });
+        return promises;
+    }
+
 }
 var databese = DbConnection.getConnection();
 var setAnswer = new SetAnswers(new ResultService(databese), new GameService(databese));
@@ -87,5 +99,6 @@ function generatePage() {
 }
 
 function onClickedNext(){
-    document.location.href = '../player/QuestionResult.html';
+    Promise.all(setAnswer.setQuizResult())
+        .then(document.location.href = '../player/QuestionResult.html');
 }
