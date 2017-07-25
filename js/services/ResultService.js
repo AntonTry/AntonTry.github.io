@@ -1,4 +1,4 @@
-class ResultService {
+    class ResultService {
     constructor(database) {
         this.database = database;
         this.ref = database.ref().child("games");
