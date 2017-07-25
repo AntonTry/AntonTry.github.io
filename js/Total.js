@@ -3,11 +3,6 @@ var gameId = "-KppOjFC92mwI17MjJNh";/*localStorage.getItem("gameId");*/
 var resultService = new ResultService(database);
 var gameService = new GameService(database);
 
-gameService.getCurrentRound(gameId)
-    .then(res=>{
-        console.log(res.val())
-    })
-
 resultService.getGameResults(gameId)
     .then((res) => {
         return res;

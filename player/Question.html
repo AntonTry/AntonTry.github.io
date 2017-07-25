@@ -7,13 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/question.css">
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src = "../js/services/GameService.js"></script>
+    <script src = "../js/DbConnection.js"></script>
+    <script src = ../js/GameResultParser.js></script>
+    <script src="../js/Question.js"></script>
     <title>Question #1</title>
 </head>
 <body>
 <div class="container container-fill">
     <div class="question">
-        <h1>Question #1</h1>
-        <h3>This is some question.</h3>
+        <h1 id="round"></h1>
+        <h1 id="quiz"></h1>
     </div>
 </div>
 </body>

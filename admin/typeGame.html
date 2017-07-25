@@ -15,18 +15,26 @@
     <script src="../js/DbConnection.js"></script>
 
 </head>
-<body>
+<body onload="onLoad()">
 <div class="container">
     <div class="game-type">
         <div class="game-tour">
             <div class="form-group">
                 <label class="control-label" for="number-tour">Number of tours</label>
-                <input class="form-control" id="number-tour" type="number" value="3" disabled="true">
+                <input class="form-control" id="number-tour" type="number" value="3" min="1" max="10" oninput="onChangeRounds()">
             </div>
         </div>
 
-        <div class="game-questions">
+        <template id="roundRow">
             <div class="form-group">
+                <label class="control-label" >Number of questions to 1 tour</label>
+                <input class="form-control"  type="number" value="10" min="1" max="20">
+            </div>
+        </template>
+
+        <div class="game-questions">
+            <div id="rows">
+<!--            <div class="form-group">
                 <label class="control-label" for="number-questions-1">Number of questions to 1 tour</label>
                 <input class="form-control" id="number-questions-1" type="number" value="10" min="1" max="20">
             </div>
@@ -37,12 +45,13 @@
             <div class="form-group">
                 <label class="control-label" for="number-questions-3">Number of questions to 3 tour</label>
                 <input class="form-control" id="number-questions-3" type="number" value="10">
-            </div>
+            </div>-->
             <div>
+            </div>
 
                 <button id="game-build" class="btn btn-default" onclick="buildListener()">Build</button>
             </div>
-        </div>
+
     </div>
 </div>
 </body>
