@@ -39,24 +39,13 @@ class SetAnswers{
             this.game = game.val();
             this.currentRound = this.game.currentRound;
             this.currentQuiz = this.game.currentQuiz;
-            this.fillRoundSelector();
             this.createQuizButtons(this.game.rounds[this.currentRound]);
-        });
-    }
-
-    fillRoundSelector(){
-        let roundSelector = document.querySelector('.round-selector');
-        let selectorOption = roundSelector.querySelector('#roundOption');
-        this.game.rounds.forEach(() => {
-            roundSelector.appendChild(document.importNode(selectorOption.content, true));
-        })
-        roundSelector.querySelectorAll('option').forEach((option,index) => {
-            option.innerHTML += index + 1;
+            this.setButtonsColor();
         });
     }
 
     createQuizButtons(quizzesCount){
-        let quizzesPanel = document.querySelector('.navigation-panel');
+        let quizzesPanel = document.querySelector('#quizPanel');
         let button = quizzesPanel.querySelector('#quizButton');
         for (let i = 1; i <= quizzesCount; i++){
             quizzesPanel.appendChild(document.importNode(button.content,true));
@@ -65,24 +54,21 @@ class SetAnswers{
     }
 
     setButtonsColor(){
-        let quizzesPanel = document.querySelector('.navigation-panel');
+        let quizzesPanel = document.querySelector('#quizPanel');
         let buttons = quizzesPanel.querySelectorAll('button');
         buttons.forEach((button,index) =>{
-
+            button.className = 'btn';
+            button.innerHTML = index + 1;
         })
-
-
-
-
     }
 }
 function generatePage() {
     let databese = DbConnection.getConnection();
-    let resultBuilder = new SetAnswers(new ResultService(databese), new GameService(databese));
-    resultBuilder.setResultHeader(1);
+    let setAnswers = new SetAnswers(new ResultService(databese), new GameService(databese));
+    setAnswers.setResultHeader(1);
     JSON.parse(localStorage.getItem('teams')).forEach((teamName) => {
-        resultBuilder.createTeamInput();
+        setAnswers.createTeamInput();
     })
-    resultBuilder.setTeamsNames();
-    resultBuilder.setGame();
+    setAnswers.setTeamsNames();
+    setAnswers.setGame();
 }
