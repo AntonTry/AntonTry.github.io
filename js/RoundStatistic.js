@@ -143,7 +143,7 @@ function drawChart(dataset) {
         .attr('y', function (d) {
             return yScale(d.y) + yScale.bandwidth() * 0.6;
         })
-        .style('fill', "black")
+        .style('fill', "white")
         .text(function (d) {
             return d.x;
         });

@@ -68,8 +68,8 @@ function drawChart(dataset) {
         width: 200
     };
 
-    width = 700 - margins.left - margins.right - legendPanel.width;
-    height = dataset[0].length * 35 - margins.top - margins.bottom;
+    width = 800 - margins.left - margins.right - legendPanel.width;
+    height = dataset[0].length * 40 - margins.top - margins.bottom;
 
     svg = d3.select('.chart')
         .append('svg')
@@ -141,7 +141,7 @@ function drawChart(dataset) {
         .attr('y', function (d) {
             return yScale(d.y) + yScale.bandwidth() * 0.6;
         })
-        .style('fill', "black")
+        .style('fill', "white")
         .text(function (d) {
             return d.x;
         });
