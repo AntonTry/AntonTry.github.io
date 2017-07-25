@@ -68,7 +68,7 @@ function drawChart(dataset) {
         width: 200
     };
 
-    width = 800 - margins.left - margins.right - legendPanel.width;
+    width = 700 - margins.left - margins.right - legendPanel.width;
     height = dataset[0].length * 40 - margins.top - margins.bottom;
 
     svg = d3.select('.chart')
