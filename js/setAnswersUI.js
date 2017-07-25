@@ -12,8 +12,8 @@ class SetAnswers{
         let resultHeader = document.querySelector('#resultHeader');
         let questionField = resultHeader.querySelector('h1');
         let answerField = resultHeader.querySelector('p');
-        questionField.innerHTML = 'Question #' + quizNumber;
-        answerField.innerHTML = 'Answer: some answer ' + quizNumber;
+        questionField.innerHTML = 'Question #' + this.currentQuiz;
+        answerField.innerHTML = 'Answer: some answer ' + this.currentRound;
     }
 
     createTeamInput(){
@@ -39,6 +39,7 @@ class SetAnswers{
             this.game = game.val();
             this.currentRound = this.game.currentRound;
             this.currentQuiz = this.game.currentQuiz;
+            this.setResultHeader();
             this.createQuizButtons(this.game.rounds[this.currentRound]);
             this.setButtonsColor();
         });
@@ -57,15 +58,23 @@ class SetAnswers{
         let quizzesPanel = document.querySelector('#quizPanel');
         let buttons = quizzesPanel.querySelectorAll('button');
         buttons.forEach((button,index) =>{
-            button.className = 'btn';
+            if(index < this.currentQuiz - 1){
+                button.className = 'btn btn-success';
+            }
+            else if(index == this.currentQuiz - 1){
+                button.className = 'btn btn-info';
+            }
+            else if(index > this.currentQuiz -1){
+                button.className = 'btn';
+            }
             button.innerHTML = index + 1;
+            console.log(this.currentQuiz);
         })
     }
 }
 function generatePage() {
     let databese = DbConnection.getConnection();
     let setAnswers = new SetAnswers(new ResultService(databese), new GameService(databese));
-    setAnswers.setResultHeader(1);
     JSON.parse(localStorage.getItem('teams')).forEach((teamName) => {
         setAnswers.createTeamInput();
     })
