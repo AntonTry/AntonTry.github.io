@@ -80,7 +80,28 @@ class GameService {
                     console.log(err);
                     return err;
                 });
+    }
 
+    setCurrentRound(currentRound,gameId){
+        return this.ref.child(`${gameId}/currentRound`)
+            .set(currentRound)
+            .then(() => {
+                return currentRound;
+            }, (err) => {
+                console.log(err);
+                return err;
+            });
+    }
+
+    setCurrentQuiz(currentQuiz,gameId){
+        return this.ref.child(`${gameId}/currentQuiz`)
+            .set(currentQuiz)
+            .then(() => {
+                return currentQuiz;
+            }, (err) => {
+                console.log(err);
+                return err;
+            });
     }
 
     convertForFirebase(game) {

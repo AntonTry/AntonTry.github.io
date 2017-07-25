@@ -1,8 +1,12 @@
 var database = DbConnection.getConnection()
-var gameId = "-KpfXdftfy4mRHJYp-i8";
+var gameId = "-KppOjFC92mwI17MjJNh";/*localStorage.getItem("gameId");*/
 var resultService = new ResultService(database);
-var teamService = new TeamService(database);
 var gameService = new GameService(database);
+
+gameService.getCurrentRound(gameId)
+    .then(res=>{
+        console.log(res.val())
+    })
 
 resultService.getGameResults(gameId)
     .then((res) => {
@@ -18,8 +22,8 @@ function replaceTeamIds(score) {
         .then((teams) => {
             score.forEach(roundScore => {
                 roundScore.data.forEach(roundScoreData => {
-                    teams.forEach(team=>{
-                        if(roundScoreData.team===team.teamId){
+                    teams.forEach(team => {
+                        if (roundScoreData.team === team.teamId) {
                             roundScoreData.team = team.name;
                         }
                     })
@@ -31,9 +35,11 @@ function replaceTeamIds(score) {
 
 
 function drawChart(dataset) {
+
     rounds = dataset.map(function (d) {
         return d.round;
     });
+
 
     dataset = dataset.map(function (d) {
         return d.data.map(function (o) {
@@ -53,7 +59,6 @@ function drawChart(dataset) {
             }
         }
     }
-
     teamNames = dataset[0].map(d => {
         return d.y;
     })

@@ -20,7 +20,7 @@ class GameResultParser {
         });
         var results = [];
         for(var roundKey in rounds){
-            results.push({round:"Round #"+roundKey,data:(function () {
+            results.push({round:"Round #"+(1+parseInt(roundKey)),data:(function () {
                 let data = [];
                 for(var teamKey in rounds[roundKey]){
                     data.push({team:teamKey,score:rounds[roundKey][teamKey].score})
