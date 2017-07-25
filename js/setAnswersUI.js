@@ -76,13 +76,23 @@ class SetAnswers{
 
     }
 }
+var databese = DbConnection.getConnection();
+var resultBuilder = new SetAnswers(new ResultService(databese), new GameService(databese));
+
+
 function generatePage() {
-    let databese = DbConnection.getConnection();
-    let resultBuilder = new SetAnswers(new ResultService(databese), new GameService(databese));
     resultBuilder.setResultHeader(1);
     JSON.parse(localStorage.getItem('teams')).forEach((teamName) => {
         resultBuilder.createTeamInput();
-    })
+    });
     resultBuilder.setTeamsNames();
     resultBuilder.setGame();
+
+
+}
+
+
+function onClickedNext(){
+    let next = new NextQuizz(resultBuilder.gameService, resultBuilder.currentRound, resultBuilder.currentQuiz);
+    next.nextPage();
 }
