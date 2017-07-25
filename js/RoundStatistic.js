@@ -3,13 +3,19 @@ var gameId = "-KppOjFC92mwI17MjJNh";/*localStorage.getItem("gameId");*/
 var resultService = new ResultService(database);
 var gameService = new GameService(database);
 
-resultService.getGameResults(gameId)
-    .then((res) => {
-        return res;
+gameService.getCurrentRound(gameId)
+    .then(currentRound=>{
+        let header = document.querySelector('h1')
+        header.innerHTML = `Round # ${currentRound.val()-1} statistic`
+        resultService.filter({by:"round",val:currentRound.val()-1},gameId)
+            .then((res) => {
+                return res;
+            })
+            .then(GameResultParser.getRoundsResult)
+            .then(replaceTeamIds)
+            .then(drawChart)
     })
-    .then(GameResultParser.getRoundsResult)
-    .then(replaceTeamIds)
-    .then(drawChart)
+
 
 
 function replaceTeamIds(score) {
@@ -64,16 +70,13 @@ function drawChart(dataset) {
         right: 24,
         bottom: 24
     };
-    legendPanel = {
-        width: 200
-    };
 
-    width = 800 - margins.left - margins.right - legendPanel.width;
-    height = dataset[0].length * 40 - margins.top - margins.bottom;
+    width = 650 - margins.left - margins.right ;
+    height = dataset[0].length * 35 - margins.top - margins.bottom;
 
     svg = d3.select('.chart')
         .append('svg')
-        .attr('width', width + margins.left + margins.right + legendPanel.width)
+        .attr('width', width + margins.left + margins.right )
         .attr('height', height + margins.top + margins.bottom)
         .append('g')
         .attr('transform', 'translate(' + margins.left + ',' + margins.top + ')');
@@ -94,8 +97,7 @@ function drawChart(dataset) {
         .padding(0.1);
 
     xAxis = d3.axisBottom()
-        .scale(xScale)
-        .tickFormat(d3.format("d"));
+        .scale(xScale);
 
     yAxis = d3.axisLeft()
         .scale(yScale);
@@ -155,18 +157,4 @@ function drawChart(dataset) {
         .style("font-size","15px")
         .call(yAxis);
 
-    rounds.forEach(function (s, i) {
-        svg.append('text')
-            .attr('font-size', 15)
-            .attr('fill', 'black')
-            .attr('x', width + margins.left)
-            .attr('y', i * 24 + 18)
-            .text(s);
-        svg.append('rect')
-            .attr('fill', colours(i))
-            .attr('width', 60)
-            .attr('height', 20)
-            .attr('x', width + margins.left + 90)
-            .attr('y', i * 23 + 6);
-    });
 }

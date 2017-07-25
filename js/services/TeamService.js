@@ -9,7 +9,7 @@ class TeamService {
             .push(team)
             .then(
                 (res) => {
-                    return res.val();
+                    return res;
                 },
                 (err) => {
                     console.log(err);

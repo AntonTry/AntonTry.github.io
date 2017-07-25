@@ -50,3 +50,10 @@ ul {
 li {
     margin: 20px;
 }
+
+.btn{
+    float: right;
+}
+.chart{
+    text-align: center;
+}

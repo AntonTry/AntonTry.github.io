@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Rounds</title>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="../js/RoundStatus.js"></script>
+    <script src="../js/TeamBuilder.js"></script>
+    <script src="../js/GameTeam.js"></script>
+    <script src="../js/GameRound.js"></script>
+    <script src="../js/GameBuilder.js"></script>
+    <script src="../js/GameResultParser.js"></script>
+    <script src="../js/Game.js"></script>
+    <script src="../js/DbConnection.js"></script>
+    <script src="../js/services/TeamService.js"></script>
+    <script src="../js/services/ResultService.js"></script>
+    <script src="../js/services/GameService.js"></script>
 </head>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/RoundStatusStyle.css">
@@ -15,39 +27,49 @@
 <div class="container">
     <header id="round-header"><h1>Rounds</h1></header>
     <div class="col-md-11 col-md-offset-2">
-        <div class="col-md-3 round-panel">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Previously</h3>
-                </div>
-                <div class="panel-body">
-                    <a href="#" class="btn btn-success btn-round-panel">Round 1</a>
-                    <a href="#" class="btn btn-success btn-round-panel">Round 2</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 round-panel">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Current</h3>
-                </div>
-                <div class="panel-body">
-                    <a href="#" class="btn btn-danger btn-round-panel">Round 3</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 round-panel">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Next</h3>
-                </div>
-                <div class="panel-body">
-                    <a href="#" class="btn btn-silver btn-round-panel">Round 4</a>
-                    <a href="#" class="btn btn-silver btn-round-panel">Round 5</a>
+
+
+        <template id="aTemp">
+            <a href="#" class="btn btn-round-panel">Round </a>
+        </template>
+
+        <template id="temp">
+            <style>
+                @import url( '../css/bootstrap.css' );
+                @import url('../css/RoundStatusStyle.css');
+                @import url('../css/bootstrapSilverButton.css');
+            </style>
+            <div class="col-md-3 round-panel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Previously</h3>
+                    </div>
+                    <div class="panel-body past">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5 col-md-offset-2 round-button-panel">
+            <div class="col-md-3 round-panel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Current</h3>
+                    </div>
+                    <div class="panel-body current">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 round-panel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Next</h3>
+                    </div>
+                    <div class="panel-body future">
+                    </div>
+                </div>
+            </div>
+        </template>
+        <round-status></round-status>
+
+        <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="onClicked()">
             <a href="#" class="btn btn-success btn-lg btn-block">
                 <span class="start-ico">START</span><i class="fa fa-flag-o"></i>
             </a>
