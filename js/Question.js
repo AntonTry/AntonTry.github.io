@@ -1,6 +1,3 @@
-
-
-
 var database = DbConnection.getConnection()
 var gameId = "-KppOjFC92mwI17MjJNh";/*localStorage.getItem("gameId");*/
 

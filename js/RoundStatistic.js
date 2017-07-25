@@ -4,10 +4,10 @@ var resultService = new ResultService(database);
 var gameService = new GameService(database);
 
 gameService.getCurrentRound(gameId)
-    .then(currentRound=>{
+    .then(currentRound => {
         let header = document.querySelector('h1')
-        header.innerHTML = `Round # ${currentRound.val()-1} statistic`
-        resultService.filter({by:"round",val:currentRound.val()-1},gameId)
+        header.innerHTML = `Round # ${currentRound.val() - 1} statistic`
+        resultService.filter({by: "round", val: currentRound.val() - 1}, gameId)
             .then((res) => {
                 return res;
             })
@@ -15,25 +15,6 @@ gameService.getCurrentRound(gameId)
             .then(replaceTeamIds)
             .then(drawChart)
     })
-
-
-
-function replaceTeamIds(score) {
-    return gameService.getGameTeams(gameId)
-        .then((teams) => {
-            score.forEach(roundScore => {
-                roundScore.data.forEach(roundScoreData => {
-                    teams.forEach(team => {
-                        if (roundScoreData.team === team.teamId) {
-                            roundScoreData.team = team.name;
-                        }
-                    })
-                })
-            })
-            return score
-        })
-}
-
 
 function drawChart(dataset) {
 
@@ -71,12 +52,12 @@ function drawChart(dataset) {
         bottom: 24
     };
 
-    width = 650 - margins.left - margins.right ;
+    width = 650 - margins.left - margins.right;
     height = dataset[0].length * 35 - margins.top - margins.bottom;
 
     svg = d3.select('.chart')
         .append('svg')
-        .attr('width', width + margins.left + margins.right )
+        .attr('width', width + margins.left + margins.right)
         .attr('height', height + margins.top + margins.bottom)
         .append('g')
         .attr('transform', 'translate(' + margins.left + ',' + margins.top + ')');
@@ -150,11 +131,30 @@ function drawChart(dataset) {
 
     svg.append('g')
         .attr('transform', 'translate(0,' + height + ')')
-        .style("font-size","15px")
+        .style("font-size", "15px")
         .call(xAxis);
 
     svg.append('g')
-        .style("font-size","15px")
+        .style("font-size", "15px")
         .call(yAxis);
+}
 
+function replaceTeamIds(score) {
+    return gameService.getGameTeams(gameId)
+        .then((teams) => {
+            score.forEach(roundScore => {
+                roundScore.data.forEach(roundScoreData => {
+                    teams.forEach(team => {
+                        if (roundScoreData.team === team.teamId) {
+                            roundScoreData.team = team.name;
+                        }
+                    })
+                })
+            })
+            return score
+        })
+}
+
+function getRoundStatus() {
+    document.location.href = '../admin/RoundStatus.html';
 }
