@@ -14,12 +14,13 @@ h1{
     font-size: 24px;
     list-style: none;
 }
-.team-list li[type="checkbox"] {
-    float: right;
-}
 .team-list input[type=checkbox]{
     transform: scale(1.5);
-    margin-left: 50px;
+    float: right;
+    margin-top: 10px;
+}
+.team-list label{
+    width: 30%;
 }
 .round-selector{
     width: 100px;
@@ -28,4 +29,3 @@ h1{
 .control-panel{
     float: right;
 }
-
