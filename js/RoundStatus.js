@@ -77,8 +77,6 @@ class RoundStatus extends HTMLElement{
                 console.log(res);
                 });
 
-            //ToDo
-
     }
 }
 
